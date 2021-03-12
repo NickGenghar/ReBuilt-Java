@@ -24,7 +24,7 @@ void main() {
     pos = gbufferModelViewInverse * viewPos + vec4(cameraPosition, 1.0);
 
     #ifdef ENABLE_WAVE
-        if(mc_Entity.x != 10000.0)
+        if(entity.x == 10000)
         worldPos.y += wave(pos.xyz, frameTimeCounter);
     #endif
 

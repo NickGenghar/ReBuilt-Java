@@ -13,7 +13,7 @@ varying vec3 entity;
 void main() {
     vec4 albedo = texture2D(texture, texcoord) * color;
     #ifdef ENABLE_WAVE
-        if(entity.x != 10000.0)
+        if(entity.x == 10000)
         albedo +=  0.2 * wave(pos.xyz, frameTimeCounter);
     #endif
 
