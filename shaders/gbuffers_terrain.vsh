@@ -1,6 +1,6 @@
 #version 120
 
-#include "/util/values.glsl"
+//#include "/util/values.glsl"
 #include "/util/distort.glsl"
 
 uniform mat4 gbufferModelView;

@@ -1,6 +1,6 @@
 #version 120
 
-#include "/util/values.glsl"
+#include "/util/distort.glsl"
 
 #define Torch_Red 0.60 // [0.00 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00]
 #define Torch_Green 0.30 // [0.00 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00]
@@ -20,13 +20,6 @@ varying vec4 shadowPos;
 const bool shadowcolor0Nearest = true;
 const bool shadowtex0Nearest = true;
 const bool shadowtex1Nearest = true;
-
-const int shadowMapResolution = 512; //WARNING! ANYTHING HIGHER THAN 2048 IS OVERKILL! [128 256 512 1024 2048 4096 8192]
-
-float drawBedrockShadow(float Y, float lD, float lS) {
-	float bias = (((lS - 1.0) * -0.1) / 9.0) + 1.0;
-	return max(Y * lD, pow(Y, lS)/bias);
-}
 
 void main() {
 	vec4 albedo = texture2D(texture, texcoord) * color;

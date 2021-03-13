@@ -1,4 +1,4 @@
-0.0.2
+0.0.3
 
-Fixed colored shadow overexposure when block light is present.
-Added torch light color.
+Improved water waves. Got from ShaderToy (forgot link), slightly modified to work as intended.
+Fixed shadows not rendering on translucent surfaces (water, glass, etc.).
