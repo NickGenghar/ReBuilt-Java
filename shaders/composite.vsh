@@ -1,10 +1,21 @@
 #version 120
 
+uniform mat4 gbufferProjection;
+uniform float aspectRatio;
+uniform vec3 sunColor, sunPosition;
+
 varying vec2 texcoord;
-varying vec4 pos;
+varying vec3 sunPos;
+varying vec4 viewPos;
 
 void main() {
-	pos = gl_ModelViewMatrix * gl_Vertex;
-	gl_Position = gl_ProjectionMatrix * pos;
 	texcoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
+
+	vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
+	gl_Position = gl_ProjectionMatrix * viewPos;
+
+	vec4 sunViewPos = gbufferProjection * vec4(sunPosition, 1.0);
+	sunViewPos = vec4(sunViewPos.xyz / sunViewPos.w, sunViewPos.w);
+	sunPos = vec3((sunViewPos.xy / sunViewPos.z) * 0.5 + 0.5, sunPosition.z);
+	sunPos.xy = (sunPos.xy - texcoord) / (vec2(1.0, aspectRatio)*0.04);
 }

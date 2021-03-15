@@ -1,4 +1,3 @@
-0.0.3
+0.0.4
 
-Improved water waves. Got from ShaderToy (forgot link), slightly modified to work as intended.
-Fixed shadows not rendering on translucent surfaces (water, glass, etc.).
+Added sun bloom
