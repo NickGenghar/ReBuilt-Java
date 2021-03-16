@@ -50,6 +50,9 @@ void main() {
     #ifdef ENABLE_WAVE
         if(entity.x == 10000)
         worldPos.y += getwaves(pos.xz, frameTimeCounter);
+
+        if(entity.x == 10001)
+        worldPos.y += 0.8 * getwaves(pos.xz, frameTimeCounter);
     #endif
 
     gl_Position = worldPos;

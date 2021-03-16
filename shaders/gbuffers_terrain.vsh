@@ -1,10 +1,14 @@
 #version 120
 
-//#include "/util/values.glsl"
+#include "/util/waves.glsl"
 #include "/util/distort.glsl"
+
+attribute vec3 mc_Entity;
 
 uniform mat4 gbufferModelView;
 uniform mat4 gbufferModelViewInverse;
+uniform vec3 cameraPosition;
+uniform float frameTimeCounter;
 
 varying vec2 texcoord, lmcoord;
 varying vec4 color;
@@ -19,8 +23,11 @@ void main() {
     texcoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
     lmcoord = (gl_TextureMatrix[1] * gl_MultiTexCoord1).xy;
     color = gl_Color;
+    vec3 entity = mc_Entity;
 
     vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
+    vec4 worldPos = gl_ProjectionMatrix * viewPos;
+    vec4 pos = gbufferModelViewInverse * viewPos + vec4(cameraPosition, 1.0);
 
     #if SHADOW_MODE == 1
         float lightDot = dot(normalize(shadowLightPosition), normalize(gl_NormalMatrix * gl_Normal));
@@ -40,5 +47,11 @@ void main() {
         shadowPos.w = lightDot;
     #endif
 
-    gl_Position = gl_ProjectionMatrix * viewPos;
+    #ifdef ENABLE_WAVE
+        if(entity.x == 10001) {
+            worldPos.x += leaves(pos.xyz, frameTimeCounter);
+        }
+    #endif
+
+    gl_Position = worldPos;
 }
