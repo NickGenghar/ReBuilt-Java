@@ -3,8 +3,12 @@ ReBuilt (ReBuilt Java) is a version of ReBuilt Shader made for Java Edition. It 
 
 Any bugs or issues, please report them [here](https://github.com/NickGenghar/ReBuilt-Java/issues).
 
-*The file `semver` is used to track changelogs and pack version. You may check this file for changelogs and version number.*
+You can support my work via donating to my [PayPal.me](https://paypal.me/nickgenghar?locale.x=en_US). Your donations are very appreciated, and it is one of the best ways to directly support my continuous work.
 
 ## Deprecation notice for players playing in 1.12 and below.
 
 This shader pack targets the latest version of Minecraft. If you play on Minecraft version 1.12 and below, some features like block mapping can be mismatched because of how the block naming scheme has changed from version 1.13 onwards. As such, there will be bugs if not incompatibility issues when using this shader pack in versions prior to version 1.13. Feel free to update your game if you want to continue using this shader pack, or look for a different shader pack that supports your Minecraft version.
+
+## Versions and Changelogs
+
+The file `semver` is used to track changelogs and pack version. You may check this file for changelogs and version number.

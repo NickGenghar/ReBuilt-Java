@@ -1,10 +1,4 @@
-0.0.5
+0.0.6
 
-Added leaves waving.
-Added deprecation notice on readme.md.
-
-Updated readme.md with better information.
-
-Improved wave control screen.
-
-Deprecated support for Minecraft earlier than version 1.13 (1.12 and below).
+Added Depth of Field and the related settings to it.
+Added my paypal.me link for those who wants to donate to my work.
