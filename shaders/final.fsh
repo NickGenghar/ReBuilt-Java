@@ -1,6 +1,6 @@
 #version 120
 
-#include "/util/dof.glsl"
+#include "/util/postprocess/dof.glsl"
 
 uniform sampler2D gcolor;
 uniform sampler2D depthtex1;

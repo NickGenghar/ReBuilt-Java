@@ -1,23 +1,18 @@
 #version 120
 
-#include "/util/waves.glsl"
-#include "/util/distort.glsl"
-
-uniform mat4 gbufferModelView;
-uniform mat4 gbufferModelViewInverse;
-
-uniform mat4 shadowModelView;
-uniform mat4 shadowProjection;
-uniform vec3 shadowLightPosition;
-
-uniform vec3 cameraPosition;
-uniform float frameTimeCounter;
+#include "/util/misc/waves.glsl"
+#include "/util/shadow/distort.glsl"
 
 attribute vec3 mc_Entity;
 
-varying vec2 texcoord, lmcoord;
+uniform mat4 gbufferModelViewInverse;
+uniform mat4 shadowModelView, shadowProjection;
+uniform vec3 cameraPosition, shadowLightPosition;
+uniform float frameTimeCounter;
+
 varying vec4 color, pos, shadowPos;
 varying vec3 entity;
+varying vec2 texcoord, lmcoord;
 
 void main() {
     texcoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;

@@ -1,9 +1,9 @@
 #version 120 
 
-uniform sampler2D texture, lightmap;
+uniform sampler2D texture;
 
-varying vec2 texcoord, lmcoord;
 varying vec4 color;
+varying vec2 texcoord;
 
 const int shadowMapResolution = 512; //WARNING! ANYTHING HIGHER THAN 2048 IS OVERKILL! [128 256 512 1024 2048 4096 8192]
 

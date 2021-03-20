@@ -1,4 +1,10 @@
-0.0.6
+0.0.7
 
-Added Depth of Field and the related settings to it.
-Added my paypal.me link for those who wants to donate to my work.
+Added God rays and the settings that go with it.
+
+Refactor codes to be more consistent.
+Refactor util folder for consistency and readability.
+
+Changed program composite1 to final as depth of field is best done in there.
+
+Remove block name "minecraft:flowing_water" from block.properties as there is no such block with that name.

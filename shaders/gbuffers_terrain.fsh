@@ -1,21 +1,35 @@
 #version 120
 
-#include "/util/distort.glsl"
+#include "/util/shadow/distort.glsl"
 
 #define Torch_Red 0.60 // [0.00 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00]
 #define Torch_Green 0.30 // [0.00 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00]
 #define Torch_Blue 0.10 // [0.00 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00]
 
 uniform sampler2D texture, lightmap;
-
-varying vec2 texcoord, lmcoord;
-varying vec4 color, pos;
-
 uniform sampler2D shadowcolor0;
+
+/*
+Very mind-blowing...
+If I do:
+uniform sampler2D shadowtex0, shadowtex1;
+
+instead of:
 uniform sampler2D shadowtex0;
 uniform sampler2D shadowtex1;
 
-varying vec4 shadowPos;
+shadows breaks and doesn't render.
+But apparently it renders back to normal if I set it as the second one...
+And surprisingly other programs can just do the first one no problem...
+
+FOR FUCK SAKE I CAN'T JUST DO uniform sampler2D shadowtex0, shadowtex1; WITHOUT BREAKING SHAODWS!!!
+*/
+
+uniform sampler2D shadowtex0;
+uniform sampler2D shadowtex1;
+
+varying vec4 color, shadowPos;
+varying vec2 texcoord, lmcoord;
 
 const bool shadowcolor0Nearest = true;
 const bool shadowtex0Nearest = true;

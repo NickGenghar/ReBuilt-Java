@@ -1,18 +1,16 @@
 #version 120
 
-#include "/util/waves.glsl"
-#include "/util/distort.glsl"
+#include "/util/misc/waves.glsl"
+#include "/util/shadow/distort.glsl"
 
 uniform sampler2D texture, lightmap;
 uniform sampler2D shadowcolor0;
-uniform sampler2D shadowtex0;
-uniform sampler2D shadowtex1;
-
+uniform sampler2D shadowtex0, shadowtex1;
 uniform float frameTimeCounter;
 
-varying vec2 texcoord, lmcoord;
 varying vec4 color, pos, shadowPos;
 varying vec3 entity;
+varying vec2 texcoord, lmcoord;
 
 const bool shadowcolor0Nearest = true;
 const bool shadowtex0Nearest = true;
