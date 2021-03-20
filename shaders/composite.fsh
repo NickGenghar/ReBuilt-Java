@@ -28,7 +28,7 @@ void main() {
 
 	float sun = 1.0 / (1.0 + dot(sp, sp));
 	#ifdef GODRAYS
-		vec2 sunScreenPosGodrays = ((sunPos.xy - texcoord) * 0.001) / (vec2(aspectRatio) * GODRAYS_SAMPLE * 0.001);
+		vec2 sunScreenPosGodrays = ((sunPos.xy - texcoord) * 0.001) / (GODRAYS_SAMPLE * 0.001);
 		float acc = 0.0;
         float jitter = bayer(gl_FragCoord.xy, GODRAYS_VARIANCE);
 		vec2 acc_coord = texcoord + sunScreenPosGodrays * jitter;
