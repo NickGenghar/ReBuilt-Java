@@ -11,7 +11,7 @@ void main() {
     vec4 diffuse = texture2D(gcolor, texcoord);
     float depth = texture2D(depthtex1, texcoord).r;
 
-    #ifdef DEPTH_OF_FIELD
+    #ifdef ENABLE_DOF
         diffuse.rgb = DoF(gcolor, texcoord, diffuse.rgb, depth);
     #endif
 

@@ -1,0 +1,90 @@
+profile.ULTRA_POTATO=Ultra Potato
+profile.POTATO=Potato
+profile.LOW=Low
+profile.MEDIUM=Medium
+profile.HIGH=High
+profile.ULTRA=Ultra
+profile.CINEMATIC=Cinematic
+profile.RTX_ON=RTX ON!!!
+
+#profile.ULTRA_POTATO.comment=For those who uses computers from the 90s.
+#profile.POTATO.comment=For those who uses Intel integrated graphics and older dedicated graphics.
+#profile.LOW.comment=Low settings. Good for older dedicated graphics.
+#profile.MEDIUM.comment=Medium settings. Getting heavier with effects. Should start using a slightly more powerful dedicated graphics.
+#profile.HIGH.comment=High settings. Modern graphics hardware will be needed.
+#profile.ULTRA.comment=Ultra settings. Anyone with their expensive toys can try this one.
+#profile.CINEMATIC.comment=For those who wants to experience eye candy graphics, and have a NASA computer at home.
+#profile.RTX_ON.comment=RTX ON!!! (Not really). Unless you have the absolute top of the line hardware, this profile WILL KILL YOUR GAME! YOU HAVE BEEN WARNED!
+
+profile.comment=Select your desired profiles here.
+
+screen.Post_Processing=Post Processing
+screen.Post_Processing.comment=Settings for post processing effects.
+
+screen.Colors=Colors
+screen.Colors.comment=Settings for tonemap operator and global colors.
+
+option.TONEMAP_OPERATOR=Tonemap Operator
+
+screen.Torch=Torch
+screen.Torch.comment=Settings for block light colors.
+
+option.Torch_Red=Red
+option.Torch_Green=Green
+option.Torch_Blue=Blue
+
+screen.Depth_Of_Field=Depth of Field
+screen.Depth_Of_Field.comment=Settings for Depth of Field effects.
+
+option.ENABLE_DOF=Enable Depth of Field
+option.DOF_SAMPLES=Sample Count
+option.DOF_SIZE=Sample Size
+option.DOF_STRENGTH=Sample Strength
+option.DOF_RADIUS=Sample Radius
+
+screen.God_Rays=God Rays
+screen.God_Rays.comment=Settings for God Rays effects.
+
+option.ENABLE_GODRAYS=Enable God Rays
+option.GODRAYS_SAMPLE=Sample Count
+option.GODRAYS_VARIANCE=Sample Variance
+
+screen.Shadows=Shadows
+screen.Shadows.comment=Settings for shadows.
+
+option.SHADOW_MODE=Shadow Mode
+option.SHADOW_MODE.comment=0 : Disabled. 1 : Java Edition. 2 : Bedrock Edition.
+
+option.shadowMapResolution=Resolution
+
+option.SHADOW_BIAS=Bias
+option.SHADOW_BIAS.comment=Adjust the bias of shadows.
+
+option.SHADOW_BRIGHTNESS=Brightness
+option.SHADOW_BRIGHTNESS.comment=Adjust the brightness of shadows. Only affects shadows in the Java Edition mode.
+
+screen.World=World
+screen.World.comment=Settings for world effects.
+
+option.ENABLE_WAVE=Enable Waves
+
+screen.Waves=Waves
+screen.Waves.comment=Settings for waves effects.
+
+option.SPEED_MULT=Speed Multiplier
+
+screen.Water_Waves=Water
+screen.Water_Waves.comment=Settings for adjusting water waves.
+
+option.DRAG_MULT=Drag Multiplier
+option.iterations=Wave Iterations
+
+screen.Foliage_Waves=Foliage
+screen.Foliage_Waves.comment=Settings for adjusting foliage waves. Note: Still work in progress.
+
+screen.Fog=Fog
+screen.Fog.comment=Settings for fog effects.
+
+option.ENABLE_FOG=Enable Fog
+
+option.sunPathRotation=Sun Angle

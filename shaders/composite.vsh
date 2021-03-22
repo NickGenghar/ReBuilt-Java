@@ -11,7 +11,7 @@ varying vec2 texcoord;
 void main() {
 	texcoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
 
-	vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
+	viewPos = gl_ModelViewMatrix * gl_Vertex;
 	gl_Position = gl_ProjectionMatrix * viewPos;
 
 	vec4 sunViewPos = gbufferProjection * vec4(sunPosition, 1.0);
