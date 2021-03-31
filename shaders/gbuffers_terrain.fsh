@@ -1,6 +1,8 @@
 #version 120
 
 #include "/util/shadow/distort.glsl"
+#include "/util/pbr/normal.glsl"
+#include "/util/pbr/specular.glsl"
 
 #define Torch_Red 0.60 // [0.00 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00]
 #define Torch_Green 0.30 // [0.00 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00]
@@ -28,7 +30,8 @@ FOR FUCK SAKE I CAN'T JUST DO uniform sampler2D shadowtex0, shadowtex1; WITHOUT 
 uniform sampler2D shadowtex0;
 uniform sampler2D shadowtex1;
 
-varying vec4 color, shadowPos;
+varying vec4 color, viewPos, worldPos, shadowPos;
+varying vec3 normal, tangent;
 varying vec2 texcoord, lmcoord;
 
 const bool shadowcolor0Nearest = true;
@@ -63,6 +66,26 @@ void main() {
 		albedo *= ambient;
 	#endif
 
-/* DRAWBUFFERS:0 */
-	gl_FragData[0] = albedo;
+	#ifdef ENABLE_NORMAL
+		albedo.rgb = normalPBR(texcoord, albedo.rgb, normal, tangent, viewPos.xyz);
+	#endif
+
+	#ifdef ENABLE_SPECULAR
+		albedo.rgb = specularPBR(texcoord, albedo.rgb, normal, tangent, viewPos.xyz);
+	#endif
+
+/* DRAWBUFFERS:012 */
+	gl_FragData[0] = albedo;//vec4(normalTex.rgb * 0.5 + 0.5, normalTex.a);
+
+	#ifdef ENABLE_NORMAL
+		gl_FragData[1] = vec4(normalPBR(texcoord, vec3(0.0), normal, tangent, viewPos.xyz), 1.0);
+	#else
+		gl_FragData[1] = vec4(0.0);
+	#endif
+
+	#ifdef ENABLE_SPECULAR
+		gl_FragData[2] = vec4(specularPBR(texcoord, vec3(0.0), normal, tangent, viewPos.xyz), 1.0);
+	#else
+		gl_FragData[2] = vec4(0.0);
+	#endif
 }

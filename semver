@@ -1,8 +1,19 @@
-0.0.8
+0.0.9
 
-Added fog.
-Added profiles.
+Current:
+Added normal map and specular map support. LabPBR 1.3 compliant implementation.
+Added DEBUG menu and options that goes with it.
 
-Improved settings screen.
+Changed pi to be defined as a uniform instead of a preprocessor directive.
 
-Changed Depth of Field calculations slightly.
+Incomplete, Hard-disabled:
+Added snippets for bloom (ugly as fuck) and the settings that goes with it.
+
+Known issues:
+Normal map and specular map has artifacts when looking behind the object.
+No backwards compatibility for LabPBR 1.2 and below. No plans for introducing them as of right now.
+
+BLOOM menu option doesn't do anything. Function not implemented as of right now.
+
+Note:
+PBR implementation is rudimentary. Some bugs are to be expected for the time being.

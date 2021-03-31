@@ -3,6 +3,7 @@
 #include "/util/misc/waves.glsl"
 #include "/util/shadow/distort.glsl"
 
+attribute vec4 at_tangent;
 attribute vec3 mc_Entity;
 
 uniform mat4 gbufferModelViewInverse;
@@ -10,17 +11,22 @@ uniform mat4 shadowModelView, shadowProjection;
 uniform vec3 cameraPosition, shadowLightPosition;
 uniform float frameTimeCounter;
 
-varying vec4 color, shadowPos;
+varying vec4 color, viewPos, worldPos, shadowPos;
+varying vec3 normal, tangent;
 varying vec2 texcoord, lmcoord;
 
 void main() {
     texcoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
     lmcoord = (gl_TextureMatrix[1] * gl_MultiTexCoord1).xy;
     color = gl_Color;
+
+    normal = normalize(gl_NormalMatrix * gl_Normal);
+    tangent = at_tangent.xyz;
+
     vec3 entity = mc_Entity;
 
-    vec4 viewPos = gl_ModelViewMatrix * gl_Vertex;
-    vec4 worldPos = gl_ProjectionMatrix * viewPos;
+    viewPos = gl_ModelViewMatrix * gl_Vertex;
+    worldPos = gl_ProjectionMatrix * viewPos;
     vec4 pos = gbufferModelViewInverse * viewPos + vec4(cameraPosition, 1.0);
 
     #if SHADOW_MODE == 1

@@ -33,6 +33,15 @@ option.Torch_Red=Red
 option.Torch_Green=Green
 option.Torch_Blue=Blue
 
+screen.Bloom=Bloom
+screen.Bloom.comment=Settings for Bloom effects.
+
+option.ENABLE_BLOOM=Enable bloom
+option.BLOOM_SAMPLES=Sample Count
+option.BLOOM_STRENGTH=Sample Strength
+option.BLOOM_INTENSITY=Intensity
+option.BLOOM_THRESHOLD=Threshold
+
 screen.Depth_Of_Field=Depth of Field
 screen.Depth_Of_Field.comment=Settings for Depth of Field effects.
 
@@ -46,7 +55,7 @@ screen.God_Rays=God Rays
 screen.God_Rays.comment=Settings for God Rays effects.
 
 option.ENABLE_GODRAYS=Enable God Rays
-option.GODRAYS_SAMPLE=Sample Count
+option.GODRAYS_SAMPLES=Sample Count
 option.GODRAYS_VARIANCE=Sample Variance
 
 screen.Shadows=Shadows
