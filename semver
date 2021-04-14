@@ -1,13 +1,11 @@
-0.0.9
+0.0.10
 
 Current:
-Added normal map and specular map support. LabPBR 1.3 compliant implementation.
-Added DEBUG menu and options that goes with it.
-
-Changed pi to be defined as a uniform instead of a preprocessor directive.
+Changed fog and God rays calculation to be done in a function file.
+Changed fog calculation to be done in composite.fsh instead of composite1.fsh. Composite1.fsh now reserved for future use.
 
 Incomplete, Hard-disabled:
-Added snippets for bloom (ugly as fuck) and the settings that goes with it.
+Bloom still disabled. Requires working with HDR.
 
 Known issues:
 Normal map and specular map has artifacts when looking behind the object.
