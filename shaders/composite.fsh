@@ -22,7 +22,7 @@ void main() {
 
     albedo1 = TONEMAP_OPERATOR(albedo1);
 	albedo1.rgb = doGodrays(albedo1.rgb, sunPos.xy, texcoord);
-	albedo1.rgb = doFog(albedo1.rgb, texcoord)
+	albedo1.rgb = doFog(albedo1.rgb, texcoord);
 
 /* DRAWBUFFERS:03 */
     gl_FragData[0] = vec4(albedo1, 1.0);
