@@ -83,19 +83,31 @@ vec3 specularPBR(in vec2 coord, vec3 color, vec3 Normal, vec3 Tangent, vec3 View
     vec3 viewDir = normalize(-View);
     vec3 halfway = normalize(lightDir + viewDir);
 
-    vec3 F0 = vec3(textureS.g);//textureS.g * 230.0 < 230.0 ? vec3(textureS.g) : vec3(1.0);
+    vec3 F0 = vec3(textureS.g);//textureS.g * 230.0 < 230.0 ? vec3(textureS.g) / 255.0 : vec3(229.0 / 255.0);
+    float roughness = pow(1.0 - textureS.r, 2);
+
     if(textureS.b == 0.0)
-    F0 = mix(F0, color.rgb, textureS.r);
+    F0 = mix(F0, color, roughness);
 
     vec3 F = fresnelSchlick(max(dot(halfway, viewDir), 0.0), F0);
 
-    float NDF = DistributionGGX(Nn, halfway, 1.0 - textureS.r);
-    float G = GeometrySmith(Nn, viewDir, lightDir, 1.0 - textureS.r);
+    float NDF = DistributionGGX(Nn, halfway, roughness);
+    float G = GeometrySmith(Nn, viewDir, lightDir, roughness);
 
     vec3 numerator = NDF * G * F;
-    float denominator = 2.0 * max(dot(Nn, viewDir), 0.0) * max(dot(Nn, lightDir), 0.0);
+    float denominator = 4.0 * max(dot(Nn, viewDir), 0.0) * max(dot(Nn, lightDir), 0.0);
+    vec3 specular = numerator / max(denominator, 0.001);
 
-    vec3 PBR = numerator / max(denominator, 0.001);
+    vec3 kS = F;
+    vec3 kD = vec3(1.0) - kS;
+    kD *= 1.0 - (roughness);
 
-    return clamp(color.rgb+PBR, 0.0, 1.0);
+    vec3 Lo = vec3(0.0);
+    float NdotL = max(dot(Nn, lightDir), 0.0);        
+    Lo += (kD * color / pi + specular) * NdotL;
+
+    color += Lo;
+    color = clamp(color.rgb, 0.0, 1.0);
+
+    return color;
 }

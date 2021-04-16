@@ -31,8 +31,11 @@ vec3 normalPBR(in vec2 coord, vec3 color, vec3 Normal, vec3 Tangent, vec3 View) 
     vec3 viewDir = normalize(-View);
     vec3 halfway = normalize(lightDir + viewDir);
 
-    float NdotH = pow(max(dot(norm, halfway), 0.0), 8.0);
+    float NdotH = pow(max(dot(norm, halfway), 0.0), 4.0);
 
     vec3 bump = vec3(NdotH);
-    return clamp(color + (bump * 0.1), 0.0, 1.0);
+    color += bump * 0.1;
+    color = clamp(color, 0.0, 1.0);
+
+    return color;
 }

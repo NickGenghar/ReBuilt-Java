@@ -57,6 +57,10 @@ void main() {
 					shadowLightColor.rgb = mix(vec3(1.0), shadowLightColor.rgb, shadowLightColor.a);
 					shadowLightColor.rgb = mix(shadowLightColor.rgb, vec3(1.0), lm.x);
 					albedo.rgb *= shadowLightColor.rgb;
+				} else {
+					#ifdef ENABLE_SPECULAR
+						albedo.rgb = specularPBR(texcoord, albedo.rgb, normal, tangent, viewPos.xyz);
+					#endif
 				}
 			}
 		}
@@ -70,22 +74,18 @@ void main() {
 		albedo.rgb = normalPBR(texcoord, albedo.rgb, normal, tangent, viewPos.xyz);
 	#endif
 
-	#ifdef ENABLE_SPECULAR
-		albedo.rgb = specularPBR(texcoord, albedo.rgb, normal, tangent, viewPos.xyz);
-	#endif
-
 /* DRAWBUFFERS:012 */
-	gl_FragData[0] = albedo;//vec4(normalTex.rgb * 0.5 + 0.5, normalTex.a);
+	gl_FragData[0] = albedo;
 
 	#ifdef ENABLE_NORMAL
 		gl_FragData[1] = vec4(normalPBR(texcoord, vec3(0.0), normal, tangent, viewPos.xyz), 1.0);
 	#else
-		gl_FragData[1] = vec4(0.0);
+		gl_FragData[1] = gl_FragData[0];
 	#endif
 
 	#ifdef ENABLE_SPECULAR
 		gl_FragData[2] = vec4(specularPBR(texcoord, vec3(0.0), normal, tangent, viewPos.xyz), 1.0);
 	#else
-		gl_FragData[2] = vec4(0.0);
+		gl_FragData[1] = gl_FragData[0];
 	#endif
 }

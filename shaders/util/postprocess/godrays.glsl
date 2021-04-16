@@ -7,8 +7,11 @@
 uniform float aspectRatio;
 
 vec3 doGodrays(vec3 color, vec2 sunPos, vec2 texcoord) {
-	vec2 sp = (sunPos.xy - texcoord) / (vec2(1.0, aspectRatio)*0.04);
-	float sun = 1.0 / (1.0 + dot(sp, sp));
+	float depth = texture2D(depthtex1, texcoord).r;
+	vec2 sp = (sunPos - texcoord) / (vec2(1.0, aspectRatio)*0.04);
+
+    float inView = clamp(dot(normalize(sunPosition), vec3(0.0)), 0.0, 1.0);
+	float sun = (1.-(inView*.5))*exp(-dot(sp,sp))+(inView*.5+.2);
 
     #ifdef ENABLE_GODRAYS
         vec2 sunScreenPosGodrays = ((sunPos - texcoord) * 0.001) / (GODRAYS_SAMPLES * 0.001);

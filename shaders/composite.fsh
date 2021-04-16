@@ -1,9 +1,5 @@
 #version 120
 
-#include "/util/postprocess/tonemap.glsl"
-#include "/util/postprocess/godrays.glsl"
-#include "/util/misc/fog.glsl"
-
 uniform sampler2D gcolor;
 uniform sampler2D shadowcolor0;
 uniform sampler2D shadowtex0, shadowtex1;
@@ -14,6 +10,10 @@ uniform vec3 fogColor, sunPosition;
 varying vec4 viewPos;
 varying vec3 sunPos;
 varying vec2 texcoord;
+
+#include "/util/postprocess/tonemap.glsl"
+#include "/util/postprocess/godrays.glsl"
+#include "/util/misc/fog.glsl"
 
 void main() {
     vec3 albedo1 = texture2D(gcolor, texcoord).rgb;

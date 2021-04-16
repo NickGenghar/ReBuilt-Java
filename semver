@@ -1,8 +1,10 @@
-0.0.10
+0.0.11
 
 Current:
-Changed fog and God rays calculation to be done in a function file.
-Changed fog calculation to be done in composite.fsh instead of composite1.fsh. Composite1.fsh now reserved for future use.
+Improved dithering algorithm.
+Improved God rays. Now with stronger rays when in view of the sun.
+
+Fixed bug in /util/misc/fog.glsl, used the wrong variable "diffuse" instead of "color".
 
 Incomplete, Hard-disabled:
 Bloom still disabled. Requires working with HDR.
