@@ -36,7 +36,7 @@ option.Torch_Blue=Blue
 screen.Bloom=Bloom
 screen.Bloom.comment=Settings for Bloom effects.
 
-option.ENABLE_BLOOM=Enable bloom
+option.ENABLE_BLOOM=Enable Bloom
 option.BLOOM_SAMPLES=Sample Count
 option.BLOOM_STRENGTH=Sample Strength
 option.BLOOM_INTENSITY=Intensity

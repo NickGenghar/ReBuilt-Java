@@ -2,7 +2,6 @@
 
 uniform mat4 gbufferProjectionInverse;
 uniform float far;
-uniform sampler2D depthtex0;
 
 vec3 doFog(vec3 color, vec2 texcoord) {
     float depth = texture2D(depthtex0, texcoord).r;

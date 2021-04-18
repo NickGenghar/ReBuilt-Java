@@ -18,7 +18,7 @@ void main() {
     vec4 specularView = texture2D(colortex2, texcoord);
     float depth = texture2D(depthtex1, texcoord).r;
 
-    /*
+    /**/
     #ifdef ENABLE_BLOOM
         if(depth < 1.0)
         albedo.rgb = bloom(colortex2, colortex3, texcoord, albedo.rgb);

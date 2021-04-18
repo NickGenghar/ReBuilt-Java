@@ -107,7 +107,7 @@ vec3 specularPBR(in vec2 coord, vec3 color, vec3 Normal, vec3 Tangent, vec3 View
     Lo += (kD * color / pi + specular) * NdotL;
 
     color += Lo;
-    color = clamp(color.rgb, 0.0, 1.0);
+    //color = clamp(color.rgb, 0.0, 1.0); //Unclamped for use with bloom.
 
     return color;
 }

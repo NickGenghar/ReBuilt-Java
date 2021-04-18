@@ -1,19 +1,15 @@
-0.0.11
+0.0.12
 
 Current:
-Improved dithering algorithm.
-Improved God rays. Now with stronger rays when in view of the sun.
+Added Bloom and the settings that goes with it. Ugly as fuck because yes...
 
-Fixed bug in /util/misc/fog.glsl, used the wrong variable "diffuse" instead of "color".
-
-Incomplete, Hard-disabled:
-Bloom still disabled. Requires working with HDR.
+Fixed another bug in /util/misc/fog.glsl, removed "depthtex0" because composite.fsh already declared it.
 
 Known issues:
 Normal map and specular map has artifacts when looking behind the object.
 No backwards compatibility for LabPBR 1.2 and below. No plans for introducing them as of right now.
 
-BLOOM menu option doesn't do anything. Function not implemented as of right now.
+Bloom has ugly artifacts.
 
 Note:
-PBR implementation is rudimentary. Some bugs are to be expected for the time being.
+PBR and bloom implementation is rudimentary. Some bugs are to be expected for the time being.

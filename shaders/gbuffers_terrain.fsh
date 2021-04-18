@@ -86,6 +86,6 @@ void main() {
 	#ifdef ENABLE_SPECULAR
 		gl_FragData[2] = vec4(specularPBR(texcoord, vec3(0.0), normal, tangent, viewPos.xyz), 1.0);
 	#else
-		gl_FragData[1] = gl_FragData[0];
+		gl_FragData[2] = gl_FragData[0];
 	#endif
 }
