@@ -30,8 +30,9 @@ FOR FUCK SAKE I CAN'T JUST DO uniform sampler2D shadowtex0, shadowtex1; WITHOUT 
 uniform sampler2D shadowtex0;
 uniform sampler2D shadowtex1;
 
+varying mat3 TBN;
 varying vec4 color, viewPos, worldPos, shadowPos;
-varying vec3 normal, tangent;
+varying vec3 normal;
 varying vec2 texcoord, lmcoord;
 
 const bool shadowcolor0Nearest = true;
@@ -41,6 +42,7 @@ const bool shadowtex1Nearest = true;
 void main() {
 	vec4 albedo = texture2D(texture, texcoord) * color;
 	vec2 lm = lmcoord;
+	vec4 ambient = texture2D(lightmap, vec2(lm.x, drawBedrockShadow(lm.y, 0.6, 3.0)));
 
 	vec3 torchColor = vec3(Torch_Red, Torch_Green, Torch_Blue) * lm.x;
 	albedo.rgb = mix(mix(albedo.rgb, pow(albedo.rgb + torchColor, vec3(2.)), lm.x), albedo.rgb, texture2D(lightmap, vec2(0., lm.y)).g);
@@ -59,32 +61,31 @@ void main() {
 					albedo.rgb *= shadowLightColor.rgb;
 				} else {
 					#ifdef ENABLE_SPECULAR
-						albedo.rgb = specularPBR(texcoord, albedo.rgb, normal, tangent, viewPos.xyz);
+						albedo.rgb = specularPBR(texcoord, albedo.rgb, normal, TBN, viewPos.xyz);
 					#endif
 				}
 			}
 		}
 		albedo *= texture2D(lightmap, lm);
 	#elif SHADOW_MODE == 2
-		vec4 ambient = texture2D(lightmap, vec2(lm.x, drawBedrockShadow(lm.y, 0.6, 3.0)));
 		albedo *= ambient;
 	#endif
 
 	#ifdef ENABLE_NORMAL
-		albedo.rgb = normalPBR(texcoord, albedo.rgb, normal, tangent, viewPos.xyz);
+		albedo.rgb = normalPBR(texcoord, albedo.rgb, ambient.rgb, TBN, normal, viewPos.xyz);
 	#endif
 
 /* DRAWBUFFERS:012 */
 	gl_FragData[0] = albedo;
 
 	#ifdef ENABLE_NORMAL
-		gl_FragData[1] = vec4(normalPBR(texcoord, vec3(0.0), normal, tangent, viewPos.xyz), 1.0);
+		gl_FragData[1] = vec4(normalPBR(texcoord, vec3(0.0), ambient.rgb, TBN, normal, viewPos.xyz), 1.0);
 	#else
 		gl_FragData[1] = gl_FragData[0];
 	#endif
 
 	#ifdef ENABLE_SPECULAR
-		gl_FragData[2] = vec4(specularPBR(texcoord, vec3(0.0), normal, tangent, viewPos.xyz), 1.0);
+		gl_FragData[2] = vec4(specularPBR(texcoord, vec3(0.0), normal, TBN, viewPos.xyz), 1.0);
 	#else
 		gl_FragData[2] = gl_FragData[0];
 	#endif

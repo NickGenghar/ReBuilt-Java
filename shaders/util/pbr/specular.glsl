@@ -41,7 +41,7 @@ float GeometrySmith(vec3 N, vec3 V, vec3 L, float roughness) {
     return ggx1 * ggx2;
 }
 
-vec3 specularPBR(in vec2 coord, vec3 color, vec3 Normal, vec3 Tangent, vec3 View) {
+vec3 specularPBR(in vec2 coord, vec3 color, vec3 Normal, mat3 TBN, vec3 View) {
     #ifdef ENABLE_NORMAL
         //R: Right (real normal component)
         //G: Down (real normal component)
@@ -55,16 +55,7 @@ vec3 specularPBR(in vec2 coord, vec3 color, vec3 Normal, vec3 Tangent, vec3 View
         //trueNormals = normalize(trueNormals);
         trueNormals = normalize(clamp(trueNormals * 2.0 - 1.0, -1.0, 1.0));
 
-        vec3 T = normalize((gl_ModelViewMatrix * vec4(Tangent, 1.0)).xyz);
-        vec3 N = Normal;
-        vec3 B = normalize(cross(N, T));
-
-        mat3 TBN = mat3(
-            T.x, B.x, N.x,
-            T.y, B.y, N.y,
-            T.z, B.z, N.z
-        );
-        TBN = transpose(TBN);
+        //TBN = transpose(TBN);
 
         vec3 Nn = TBN * trueNormals;
     #else

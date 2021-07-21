@@ -11,8 +11,9 @@ uniform mat4 shadowModelView, shadowProjection;
 uniform vec3 cameraPosition, shadowLightPosition;
 uniform float frameTimeCounter;
 
+varying mat3 TBN;
 varying vec4 color, viewPos, worldPos, shadowPos;
-varying vec3 normal, tangent;
+varying vec3 normal;
 varying vec2 texcoord, lmcoord;
 
 void main() {
@@ -21,8 +22,14 @@ void main() {
     color = gl_Color;
 
     normal = normalize(gl_NormalMatrix * gl_Normal);
-    tangent = at_tangent.xyz;
+    vec3 tangent = normalize(gl_NormalMatrix * (at_tangent.xyz / at_tangent.w));
+    vec3 bitangent = cross(normal, tangent);
 
+    TBN = mat3(
+        tangent,
+        bitangent,
+        normal
+    );
     vec3 entity = mc_Entity;
 
     viewPos = gl_ModelViewMatrix * gl_Vertex;
