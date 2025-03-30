@@ -4,6 +4,14 @@ float gaussian(vec2 i, float sigma) {
     return 1.0 / (2.0 * pi * (sigma * sigma)) * exp(-(((i.x * i.x) + (i.y * i.y)) / (2.0 * (sigma * sigma))));
 }
 
+#ifndef pi
+#define pi 3.1415926535897932384626434
+#endif
+
+float gaussian_naive(float i) {
+    return 1.0 / pi * exp(-(i*i));
+}
+
 vec3 blur(in sampler2D tex, in vec2 coord, in int sampleSize, in float strength, in float intensity) {
     vec3 s = vec3(0.0);
     vec2 pixelSize = vec2(1.0) / vec2(viewWidth, viewHeight);

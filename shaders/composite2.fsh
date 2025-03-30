@@ -16,6 +16,6 @@ void main() {
     float depth = texture(depthtex0, texcoord).r;
     
     #ifdef ENABLE_DOF
-        color.rgb = doDepthOfField(colortex0, texcoord, color.rgb, depth, false);
+        color.rgb = doDepthOfField(colortex0, texcoord, color.rgb, depth, true);
     #endif
 }

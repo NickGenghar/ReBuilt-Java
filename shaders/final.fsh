@@ -1,6 +1,7 @@
 #version 120
 
 #define DEBUG 0 //Cycles between the debug views. [0 1 2]
+#define gl_FragColor gl_FragData[0]
 
 #include "/util/postprocess/dof.glsl"
 #include "/util/postprocess/bloom.glsl"
@@ -24,10 +25,6 @@ void main() {
         albedo.rgb = bloom(colortex2, colortex3, texcoord, albedo.rgb);
     #endif
     /**/
-
-    #ifdef ENABLE_DOF
-        albedo.rgb = DoF(gcolor, texcoord, albedo.rgb, depth);
-    #endif
 
     #if DEBUG == 0
         gl_FragColor = albedo;

@@ -3,7 +3,7 @@
 uniform sampler2D specular, depthtex1;
 uniform mat4 gbufferProjectionInverse;
 uniform vec3 shadowLightPosition, upPosition;
-uniform float pi;
+const float pi = 3.1415926535897932384626434;
 
 vec3 fresnelSchlick(float cosTheta, vec3 f0) {
     return f0 + (1.0 - f0) * pow(max(1.0 - cosTheta, 0.0), 5.0);
